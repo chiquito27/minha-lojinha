@@ -19,4 +19,4 @@ requireDir("./src/models");
 app.use("/public/files", express.static("public/files"));
 app.use("/api", require("./src/routes"));
 
-app.listen(3001);
+app.listen(process.env.PORT || 3000);
