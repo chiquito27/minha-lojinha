@@ -1,4 +1,4 @@
-export const API_ROOT = `http://minha-lojinha-api.us-east-1.elasticbeanstalk.com/api`;
+export const API_ROOT = `https://minha-lojinha-api.herokuapp.com/api`;
 export const FILES_ROOT = `http://localhost:3001/public/files`;
 
 export const apiPath = (urlParam) => ({
