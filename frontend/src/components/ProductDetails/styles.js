@@ -8,7 +8,6 @@ export const useStyles = makeStyles(() => ({
   img: {
     margin: "auto",
     display: "block",
-    maxWidth: "100%",
-    maxHeight: "100%",
+    maxWidth: "80%",
   },
 }));
