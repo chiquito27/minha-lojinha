@@ -27,13 +27,11 @@ export const ProductDetails = ({ data }) => {
         <Divider style={{ marginTop: "12px", marginBottom: "12px" }} />
         <Grid container direction="row">
           <Grid item xs={12} sm={6}>
-            <ButtonBase className={classes.image}>
-              <img
-                className={classes.img}
-                alt={data?.title}
-                src={data?.image && `${FILES_ROOT}/${data.image.fileName}`}
-              />
-            </ButtonBase>
+            <img
+              className={classes.img}
+              alt={data?.title}
+              src={data?.image && `${FILES_ROOT}/${data.image.fileName}`}
+            />
           </Grid>
           <Grid
             item
@@ -74,7 +72,7 @@ export const ProductDetails = ({ data }) => {
             </Grid>
           </Grid>
         </Grid>
-        <Divider />
+        <Divider style={{ marginTop: "12px" }} />
         <Container>
           <Grid item xs={12} style={{ marginTop: "12px" }}>
             <Typography gutterBottom variant="h5">

@@ -50,7 +50,9 @@ export const ViewProducts = ({ category, isBusca = false }) => {
             <Grid
               item
               xs={6}
-              sm={3}
+              sm={4}
+              md={3}
+              xl={2}
               className={classes.displayFlex}
               key={item._id}
             >

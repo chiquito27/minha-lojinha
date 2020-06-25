@@ -87,10 +87,16 @@ export const User = ({ match }) => {
                 <div className={classes.flexJustify}>
                   <Typography variant="h6">Produtos anunciados</Typography>
                 </div>
-                <div className={classes.flexJustify}>
+                <Grid container className={classes.flexJustify}>
                   {!productsLoading ? (
                     products?.map((item, idx) => (
-                      <Grid item xs={12} sm={3} key={`${item.title}-${idx}`}>
+                      <Grid
+                        item
+                        xs={6}
+                        sm={4}
+                        md={3}
+                        key={`${item.title}-${idx}`}
+                      >
                         <ProductCard
                           data={item}
                           editable={userPanel}
@@ -109,7 +115,7 @@ export const User = ({ match }) => {
                       Parece que não tem nada aqui ainda :(
                     </Typography>
                   )}
-                </div>
+                </Grid>
               </Grid>
             </Grid>
           </Container>
