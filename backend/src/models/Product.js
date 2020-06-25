@@ -16,16 +16,34 @@ const ProductSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    required: true
+    required: true,
   },
   seller: {
+    type: String,
+    required: true,
+  },
+  sellerPhone: {
     type: String,
     required: true,
   },
   price: {
     type: Number,
     required: true,
-  }
+  },
+  image: {
+    id: {
+      type: String,
+      required: true,
+    },
+    path: {
+      type: String,
+      required: true,
+    },
+    fileName: {
+      type: String,
+      required: true,
+    },
+  },
 });
 
 ProductSchema.plugin(mongoosePaginate);

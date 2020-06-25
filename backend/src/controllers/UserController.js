@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const { v1: uuidv1 } = require("uuid");
 
 const User = mongoose.model("User");
+const Product = mongoose.model("Product");
 
 module.exports = {
   async show(req, res) {
@@ -10,21 +11,59 @@ module.exports = {
         "-password"
       );
 
-      return res.json(user);
+      if (user) {
+        return res.json(user);
+      }
+
+      return res
+        .status(500)
+        .json({ success: false, message: "Erro ao buscar usuário" });
     } catch (e) {
-      return res.json(e);
+      console.log(e);
+      return res
+        .status(500)
+        .json({ success: false, message: "Erro ao buscar usuário" });
     }
   },
 
   async update(req, res) {
+    const { phone: phoneUpdated, name: nameUpdated } = req.body;
     try {
-      const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-      });
+      const currentUser = await User.findById(req.params.id);
 
-      return res.json(user);
+      let phone = phoneUpdated;
+      let name = nameUpdated;
+
+      if (!phoneUpdated) {
+        phone = currentUser.phone;
+      }
+      if (!nameUpdated) {
+        name = currentUser.name;
+      }
+
+      const user = await User.findByIdAndUpdate(
+        req.params.id,
+        { phone, name },
+        {
+          new: true,
+        }
+      );
+
+      await Product.update(
+        { seller: user.nickname },
+        { sellerPhone: phoneUpdated }
+      );
+
+      return res.json({
+        success: true,
+        message: "Usuário atualizado",
+        userId: user.id,
+      });
     } catch (e) {
-      return res.json(e);
+      console.log(e);
+      return res
+        .status(500)
+        .json({ success: false, message: "Erro ao atualizar usuário" });
     }
   },
 
@@ -32,9 +71,16 @@ module.exports = {
     try {
       const user = await User.create(req.body);
 
-      return res.json(user);
+      return res.json({
+        success: true,
+        message: "Usuário criado",
+        userId: user.id,
+      });
     } catch (e) {
-      return res.json(e);
+      console.log(e);
+      return res
+        .status(500)
+        .json({ success: false, message: "Erro ao criar usuário" });
     }
   },
 
@@ -49,32 +95,52 @@ module.exports = {
         if (tokenUpdate.ok) {
           return res.json({
             token: `${token}.${user.id}`,
-            isValid,
-            email: user.email,
+            profile: {
+              id: user.id,
+              name: user.name,
+              email: user.email,
+              nickname: user.nickname,
+              phone: user.phone,
+            },
           });
         }
 
-        return res.json({ error: "Error saving token" });
+        return res
+          .status(500)
+          .json({ success: false, message: "Erro ao gerar token" });
       }
 
-      return res.json({ error: "Invalid password" });
+      return res
+        .status(403)
+        .json({ success: false, message: "Senha inválida" });
     } catch (e) {
-      return res.json(e);
+      console.log(e);
+      return res
+        .status(500)
+        .json({ success: false, message: "Email ou senha incorreta" });
     }
   },
 
   async logout(req, res) {
     try {
       const user = await User.findOne({ email: req.body.email });
-      const tokenUpdate = user.update({ lastToken: null });
+      const tokenUpdate = await user.update({ lastToken: "" });
 
       if (tokenUpdate.ok) {
-        return res.json({ message: "Logout successful" });
+        return res.json({
+          success: true,
+          message: "Logout efetuado com sucesso",
+        });
       }
 
-      return res.json({ error: "Error removing token" });
+      return res
+        .status(500)
+        .json({ success: false, message: "Erro ao encerrar sessão" });
     } catch (e) {
-      return res.json(e);
+      console.log(e);
+      return res
+        .status(500)
+        .json({ success: false, message: "Erro ao encerrar sessão" });
     }
   },
 };

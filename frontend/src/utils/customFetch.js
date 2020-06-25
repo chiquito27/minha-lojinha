@@ -1,4 +1,10 @@
-export default async function customFetch(path, method = "GET", data = {}) {
+export default async function customFetch(
+  path,
+  method = "GET",
+  data = {},
+  formData = null,
+  params = null
+) {
   const headers = new Headers({
     Accept: "application/json",
   });
@@ -11,10 +17,17 @@ export default async function customFetch(path, method = "GET", data = {}) {
   if (data && Object.keys(data).length > 0) {
     init.body = JSON.stringify(data);
     headers.append("Content-Type", "application/json");
+  } else if (formData) {
+    init.body = formData;
+    headers.append("enctype", "multipart/form-data");
   }
 
   const token = localStorage.getItem("token");
-  const queryParams = `?token=${token}`;
+  let queryParams = `?token=${token}`;
+
+  if (params) {
+    queryParams = queryParams.concat(`&${params}`);
+  }
 
   const res = await fetch(path + queryParams, init);
 
@@ -24,11 +37,12 @@ export default async function customFetch(path, method = "GET", data = {}) {
       return Promise.reject(errors);
     }
     if (res.status === 401 || res.status === 403) {
-      // window.location.href = '/';
-      return Promise.reject();
+      //window.location.href = "/erro";
+      const errors = await res.json();
+      return Promise.reject(errors);
     }
     if (res.status === 404) {
-      // window.location.href = '/notfound';
+      window.location.href = "/erro";
       return Promise.reject(res.status);
     }
     if (res.status === 405) {
