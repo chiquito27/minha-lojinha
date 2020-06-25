@@ -24,7 +24,7 @@ export const ProductDetails = ({ data }) => {
             {data?.title}
           </Typography>
         </Container>
-        <Divider style={{ marginTop: "12px" }} />
+        <Divider style={{ marginTop: "12px", marginBottom: "12px" }} />
         <Grid container direction="row">
           <Grid item xs={12} sm={6}>
             <ButtonBase className={classes.image}>
@@ -44,7 +44,7 @@ export const ProductDetails = ({ data }) => {
             alignItems="center"
             justify="center"
           >
-            <Grid item style={{ marginBottom: "24px" }}>
+            <Grid item style={{ marginBottom: "24px", marginTop: "24px" }}>
               <Typography variant="h5" style={{ fontWeight: "bold" }}>
                 R$ {data?.price}
               </Typography>
@@ -66,7 +66,7 @@ export const ProductDetails = ({ data }) => {
                 Tenho Interesse
               </Button>
             </Grid>
-            <Grid item>
+            <Grid item style={{ marginBottom: "12px" }}>
               <Typography variant="body1">
                 Vendedor:{" "}
                 <Link to={`/usuario/${data?.seller}`}>{data?.seller}</Link>

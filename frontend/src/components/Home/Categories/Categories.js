@@ -15,6 +15,7 @@ import { CATEGORIES } from "../../../utils/enums";
 import { useStyles } from "./styles";
 import { useHistory } from "react-router";
 import styled from "styled-components";
+import Grid from "@material-ui/core/Grid";
 
 const defaultIconColor = "#e33b5d";
 
@@ -31,40 +32,40 @@ export const Categories = () => {
   const history = useHistory();
 
   return (
-    <div className={classes.rootDiv}>
-      <div className={classes.iconLabel}>
+    <Grid container className={classes.rootDiv}>
+      <Grid item xs={4} sm={1} className={classes.iconLabel}>
         <StyledButton
           onClick={() => history.push(`/categoria/${CATEGORIES.CELULARES}`)}
         >
           <Icon path={mdiCellphoneIphone} size={1.5} />
         </StyledButton>
         <Typography>Celulares</Typography>
-      </div>
-      <div className={classes.iconLabel}>
+      </Grid>
+      <Grid item xs={4} sm={1} className={classes.iconLabel}>
         <StyledButton
           onClick={() => history.push(`/categoria/${CATEGORIES.INFORMATICA}`)}
         >
           <Icon path={mdiLaptop} size={1.5} />
         </StyledButton>
         <Typography>Informática</Typography>
-      </div>
-      <div className={classes.iconLabel}>
+      </Grid>
+      <Grid item xs={4} sm={1} className={classes.iconLabel}>
         <StyledButton
           onClick={() => history.push(`/categoria/${CATEGORIES.AUDIO_VIDEO}`)}
         >
           <Icon path={mdiTelevision} size={1.5} />
         </StyledButton>
         <Typography>Áudio e Vídeo</Typography>
-      </div>
-      <div className={classes.iconLabel}>
+      </Grid>
+      <Grid item xs={4} sm={1} className={classes.iconLabel}>
         <StyledButton
           onClick={() => history.push(`/categoria/${CATEGORIES.VESTUARIO}`)}
         >
           <Icon path={mdiHanger} size={1.5} />
         </StyledButton>
         <Typography>Vestuário</Typography>
-      </div>
-      <div className={classes.iconLabel}>
+      </Grid>
+      <Grid item xs={4} sm={1} className={classes.iconLabel}>
         <StyledButton
           onClick={() =>
             history.push(`/categoria/${CATEGORIES.ELETRODOMESTICOS}`)
@@ -73,23 +74,23 @@ export const Categories = () => {
           <Icon path={mdiWashingMachine} size={1.5} />
         </StyledButton>
         <Typography>Eletrodomésticos</Typography>
-      </div>
-      <div className={classes.iconLabel}>
+      </Grid>
+      <Grid item xs={4} sm={1} className={classes.iconLabel}>
         <StyledButton
           onClick={() => history.push(`/categoria/${CATEGORIES.FERRAMENTAS}`)}
         >
           <Icon path={mdiHammerScrewdriver} size={1.5} />
         </StyledButton>
         <Typography>Ferramentas</Typography>
-      </div>
-      <div className={classes.iconLabel}>
+      </Grid>
+      <Grid item xs={4} sm={1} className={classes.iconLabel}>
         <StyledButton
           onClick={() => history.push(`/categoria/${CATEGORIES.LIVROS}`)}
         >
           <Icon path={mdiBookshelf} size={1.5} />
         </StyledButton>
         <Typography>Livros</Typography>
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 };

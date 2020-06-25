@@ -75,14 +75,19 @@ export const ProductCard = ({
         />
         <CardContent
           onClick={() => history.push("/produto/" + _id)}
-          style={{ paddingBottom: "0px" }}
+          style={{
+            paddingBottom: "0px",
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
         >
           <Typography
             gutterBottom
             variant="h5"
             style={{
               overflow: "hidden",
-              maxHeight: 65,
+              height: 65,
             }}
           >
             {title}
@@ -90,7 +95,7 @@ export const ProductCard = ({
           <Typography
             variant="body2"
             color="textSecondary"
-            style={{ overflow: "hidden", maxHeight: 60 }}
+            style={{ overflow: "hidden", height: 60 }}
           >
             {description}
           </Typography>

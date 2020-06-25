@@ -45,30 +45,28 @@ export const Appbar = () => {
             </Typography>
           </Link>
           <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <div style={{ padding: "15px" }}>
-              <Button
-                className={classes.registerButton}
-                variant="contained"
-                disableElevation
-                onClick={registerProduct}
-              >
-                <Typography variant="body2" className={classes.productButton}>
-                  Anunciar
-                </Typography>
-              </Button>
-            </div>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls="primary-search-account-menu"
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              style={{ color: "#000" }}
+          <div style={{ padding: "15px" }}>
+            <Button
+              className={classes.registerButton}
+              variant="contained"
+              disableElevation
+              onClick={registerProduct}
             >
-              <AccountCircle />
-            </IconButton>
+              <Typography variant="body2" className={classes.productButton}>
+                Anunciar
+              </Typography>
+            </Button>
           </div>
+          <IconButton
+            edge="end"
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            onClick={handleProfileMenuOpen}
+            style={{ color: "#000" }}
+          >
+            <AccountCircle />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <AppMenu anchorEl={anchorEl} handleMenuClose={handleMenuClose} />

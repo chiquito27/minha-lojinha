@@ -12,6 +12,8 @@ import {
   DialogActions,
   Button,
   Dialog,
+  useTheme,
+  useMediaQuery,
 } from "@material-ui/core";
 import { CATEGORIES_LIST } from "../../utils/enums";
 import { SnackAlert } from "../SnackAlert/SnackAlert";
@@ -37,6 +39,7 @@ export const DialogAlert = ({
   const descriptionRef = useRef();
   const priceRef = useRef();
   const [category, setCategory] = useState(productCategory);
+  const mobile = useMediaQuery(useTheme().breakpoints.down("xs"));
 
   const handleClick = async () => {
     if (!edicao) {
@@ -80,11 +83,16 @@ export const DialogAlert = ({
   };
 
   return (
-    <Dialog open={openDialog} onClose={handleClose}>
+    <Dialog
+      open={openDialog}
+      onClose={handleClose}
+      fullScreen={mobile}
+      fullWidth={!mobile}
+    >
       <DialogTitle>
         {edicao ? "Editar anúncio" : "Deseja excluir esse anúncio?"}
       </DialogTitle>
-      <DialogContent style={{ width: "500px" }}>
+      <DialogContent>
         <DialogContentText>
           {edicao
             ? "Atualize os novos campos."

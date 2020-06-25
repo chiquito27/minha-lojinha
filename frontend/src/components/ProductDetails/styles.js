@@ -6,8 +6,10 @@ export const useStyles = makeStyles(() => ({
     padding: "12px",
   },
   image: {
-    width: 512,
-    height: 512,
+    borderTop: "12px",
+    borderBottom: "12px",
+    width: "52vmax",
+    height: "30vmax",
   },
   img: {
     margin: "auto",

@@ -7,6 +7,8 @@ export const useStyles = makeStyles(() => ({
     alignItems: "center",
     flexDirection: "column",
     color: "#fff",
+    marginBottom: "8px",
+    marginTop: "8px",
   },
   rootDiv: {
     marginTop: "24px",
