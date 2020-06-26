@@ -7,7 +7,11 @@
 
 Minha Lojinha é um site para expor a venda de produtos usados e estabelecer uma comunicação entre os interessados.
 A vitrine virtual mostrará o preço dos produtos a venda, e cada usuário deverá ter um perfil na loja.
-É possível categorizar os itens para posterior filtragem na plataforma.
+É possível categorizar os itens para posterior filtragem na plataforma. O contato com o vendedor é feito via WhatsApp com o devido campo preenchido na plataforma.
+
+A aplicação pode ser acessada diretamente na internet sem necessidade de rodar localmente:
+ - [minha-lojinha frontend](https://master.d3a74c944wx7vv.amplifyapp.com)
+ - [minha-lojinha api](https://minha-lojinha-api.herokuapp.com/api/products)
 
 ## Pré-requisitos
 
@@ -21,7 +25,7 @@ O sistema é multiplataforma, basta seguir as instruções de acordo com seu SO.
 
 ## Como executar
 
-Para fazer o deploy do frontend da aplicação siga os seguintes passos:
+Para fazer o deploy do frontend da aplicação, siga as instruções no arquivo `README.md` da pasta frontend, e depois execute:
 
 ```
 cd frontend
@@ -39,7 +43,7 @@ yarn install && yarn dev
 
 Para usar Minha Lojinha, siga os seguintes passos:
 
-* Abra o navegador e digite o seguinte endereço: `http://localhost:3000/`
+* Abra o navegador e digite o seguinte endereço: `http://localhost:3000/` (ou a porta escolhida)
 * Ao abrir a aplicação você poderá navegar pelo conteúdo público e criar uma conta no site.
 * Ao criar sua conta e autenticar será possível publicar produtos.
 * É possível utilizar a busca no site e navegar pelas categorias disponíveis.
@@ -52,26 +56,26 @@ Até o momento é possível operar a API do backend com os seguintes métodos:
 - `GET` `/products/:id`: Retorna os dados do produto correspondente ao `id`
 - `POST` `/users`: Cria um novo usuário
 - `POST` `/products`: Cria um novo produto
-- `POST` `/login`: Faz o login de um usuário
-- `POST` `/logout`: Faz o logout de um usuário
 - `PUT` `/products/:id`: Atualiza o produto `id`
 - `PUT` `/user/:id`: Atualiza o usuário `id`
 - `DELETE` `/products/:id`: Remove o produto `id`
 - `POST` `/logout`: Encerra sessão atual
 - `POST` `/login`: Cria nova sessão
 - `POST` `/images`: Faz upload de nova imagem de produto
-- `DELETE` `/images/:id`: Apaga imagem `id` 
 
-No frontend é possível receber o token a partir da rota de login e operar as rotas protegidas (`WIP`).
+No frontend é possível receber o token a partir da rota de login e operar as rotas protegidas.
 
 É possível navegar através das telas:
-- `/`: Página inicial do hotsite, com todos os produtos disponíveis através de categorias (`WIP`)
-- `/produto/:id`: Página de detalhes de um produto `id` (`WIP`)
+- `/`: Página inicial do hotsite, com todos os produtos disponíveis através de categorias
+- `/produto/:id`: Página de detalhes de um produto `id`
 - `/produto/novo`: Página de cadastro de um produto 
 - `/login`: Página de login
 - `/cadastro`: Página de registro
-
-Obs.: `WIP` significa trabalho em progresso.
+- `/usuario/:nick`: Página de detalhes pública com as últimas postagens
+- `/conta`: Página do usuário com acesso aos produtos postados
+- `/categoria/:category`: Página com os produtos da categoria escolhida
+- `/busca?termo=produto`: Busca pelo termo `produto` no site
+- `/erro`: Página para tratativa de erros
 
 Para mais detalhes veja `CHANGELOG.md`
 
