@@ -1,5 +1,5 @@
 export const API_ROOT = `https://minha-lojinha-api.herokuapp.com/api`;
-export const FILES_ROOT = `https://minha-lojinha-api.herokuapp.com/public/files`;
+export const FILES_ROOT = `https://minha-lojinha.s3.amazonaws.com/images`;
 
 export const apiPath = (urlParam) => ({
   USERS: `${API_ROOT}/users`,
